@@ -1,0 +1,2 @@
+def Code (Num):
+    print ""

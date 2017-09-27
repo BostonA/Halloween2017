@@ -1,4 +1,4 @@
-import pygame, sys, time
+import pygame, sys, time, CommunicateControl
 
 ## Created By Boston Abrams
 ##
@@ -10,11 +10,12 @@ import pygame, sys, time
 ##
 ## -------------  Options  -------------
 ## If you want FullScreen on or not.
-FullScreen = True
+FullScreen = False
 #  ----------------------
 # The FilePath is the position of the data storage location
 FilePath='DataStore.txt'
 # -----------------------
+ButtonPress = 0
 ## Functions
 def ToString (List): # Coverts List to String
     return ''.join(List)
@@ -61,8 +62,22 @@ while True:
                 pygame.quit()
                 break
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            #Screen = font.render("1", 1, (0, 0, 0))
-            print "Hi"
+            x = event.pos[0]
+            y = event.pos[1]
+            if 5 < x < 395 and 60 < y < 260:
+                print "#1"
+                ButtonPress = 1
+                #Screen = font.render("1", 1, (0, 0, 0))
+            elif 405 < x < 795 and 60 < y < 260:
+                print "#2"
+                ButtonPress = 2
+            elif 5 < x < 395 and 275 < y < 475:
+                print "#3"
+                ButtonPress = 3
+            elif 405 < x <795 and 275 <y <475:
+                print "#4"
+                ButtonPress = 4
             #KeyEntry, StartFire, HeadingSel, DistanceSel,HeadingFirstTime,DistanceFirstTime,Adder= Setup.CheckForButton(event.pos[0], event.pos[1], KeyEntry,StartFire,HeadingSel,DistanceSel,HeadingFirstTime,DistanceFirstTime,Adder)
     pygame.display.flip()
     screen.fill([105,105,105])
+    CommunicateControl.Code(ButtonPress)
