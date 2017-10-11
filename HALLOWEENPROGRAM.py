@@ -1,4 +1,6 @@
 import pygame, sys, time, CommunicateControl
+Locs = [[1, 1, 2], [2, 3, 3], [4, 4, 2]]
+oldLinesGood = ""
 
 ## Created By Boston Abrams
 ##
@@ -30,6 +32,12 @@ pygame.display.set_caption('CandyBot')
 Smallfont = pygame.font.Font(None, 25)
 font = pygame.font.Font(None, 50)
 Bigfont = pygame.font.Font(None, 100)
+
+FilePath = "SysStore.txt"
+reading_file=open(FilePath, 'r') #Opens File
+lines=reading_file.readlines()
+GoodLine = lines[len(lines) - 1]
+OldGood = GoodLine
 # Render Titles
 Title = font.render("Pick Your Candy", 1, (0, 0, 0))
 Candy1 = font.render("Candy 1", 1, (0, 0, 0))
@@ -81,3 +89,27 @@ while True:
     pygame.display.flip()
     screen.fill([105,105,105])
     CommunicateControl.Code(ButtonPress)
+    Reading_file=open(FilePath, 'r')
+    lines=reading_file.readlines()
+    #print lines
+    ToY = False
+    xCord = 0
+    yCord = 0
+    GoodLine = lines[len(lines) - 1] #GoodLine is the last line of the file!
+    if len(lines) > len(oldLinesGood): # If there are more lines in the new one one was added. So then that line should be read
+        DoneWait = True
+        for z in lines:
+            if z == " ":
+                ToY = True
+            else:
+                if ToY:
+                    
+                elif not ToY:
+                    
+    else:
+        DoneWait = False
+    
+    
+    
+    oldLinesGood = lines
+    OldGood = GoodLine
